@@ -10,17 +10,16 @@ public class StatsService {
     }
 
     public int calculateAverageSumSales(int[] sales) { //средняя сумма продаж за месяц
-        int averagesum = calculateSumSales(sales) / sales.length;
-        return averagesum;
+        return calculateSumSales(sales) / sales.length;
     }
 
     public int findMax(int[] sales) {//месяц с максимальными продажами
+        int monthMax = 0;
         int currentMax = sales[0];
         int month = 0;
-        int monthMax = 0;
         for (int i : sales) {
             month += 1;
-            if (currentMax < i) {
+            if (currentMax <= i) {
                 currentMax = i;
                 monthMax = month;
             }
@@ -34,7 +33,7 @@ public class StatsService {
         int monthMin = 0;
         for (int i : sales) {
             month += 1;
-            if (currentMin > i) {
+            if (currentMin >= i) {
                 currentMin = i;
                 monthMin = month;
             }
@@ -43,24 +42,22 @@ public class StatsService {
     }
 
     public int monthsBelowAverage(int[] sales) {// количество месяцев с продажами ниже среднего
-        int numberOfMonth1 = 0;
-        int averagesum = calculateAverageSumSales(sales);
+        int numberOfMonth = 0;
         for (int i : sales) {
-            if (i < averagesum) {
-                numberOfMonth1 += 1;
+            if (i <  calculateAverageSumSales(sales)) {
+                numberOfMonth += 1;
             }
         }
-        return numberOfMonth1;
+        return numberOfMonth;
     }
 
     public int monthsMoreAverage(int[] sales) {// количество месяцев с продажами больше среднего
-        int numberOfMonth2 = 0;
-        int averagesum = calculateAverageSumSales(sales);
+        int numberOfMonth = 0;
         for (int i : sales) {
-            if (i > averagesum) {
-                numberOfMonth2 += 1;
+            if (i > calculateAverageSumSales(sales)) {
+                numberOfMonth += 1;
             }
         }
-        return numberOfMonth2;
+        return numberOfMonth;
     }
 }
